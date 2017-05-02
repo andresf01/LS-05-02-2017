@@ -13,8 +13,10 @@ int main(int argc, char* argv[]){
 
         /* find out number of processes */
         MPI_Comm_size(MPI_COMM_WORLD, &size);
-
-        printf("Yo soy el maestro y existen %d procesos corriendo", size);
+	if (rank==0)
+        	printf("Yo soy el maestro y existen %d procesos corriendo\n", size);
+	if (rank!=0)
+		printf("Yo soy un proceso con identificador %d de %d procesos en ejecucion\n", rank, size);
 
         /* shut down MPI */
         MPI_Finalize(); 
